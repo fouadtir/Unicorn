@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Unicorn </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/controllers/unicornCtrl.js"></script>
+    <script type="text/javascript" src="app/services/unicorn.factory.js"></script>
+  </head>
+
+  <body ng-app = "Unicorn">
+    <h1> Unicorn </h1>
+    <hr>
+    <div ng-controller="UnicornCtrl">
+      <h2> Liste des licornes </h2>
+      <pre>{{unicorns | json }}</pre>
+      <h2>Ajouter une licorne</h2>
+      <input ng-model="unicorn.name" class="text" placeholder="Saisir le nom de la licorne"/>
+      <input colorpicker ng-model="unicorn.color" type="text">
+      <input type="number" name="input" ng-model="unicorn.age" min="0" max="99" required>
+      <form>
+        <label>
+          <input ng-model="unicorn.gender" type="radio" value="male">
+          male
+        </label><br/>
+        <label>
+          <input ng-model="unicorn.gender" type="radio" value="female">
+          female
+        </label><br/>
+        <label>
+          <input ng-model="unicorn.gender" type="radio" value="other">
+          other
+        </label><br/>
+      </form>
+      <button type="button" name="button" ng-click="addUnicorn()">Ajouter licorne</button>
+      <br>
+      <h2> Choisir les parents </h2>
+      <select>
+          <option ng-repeat="unicorn in unicorns">{{unicorn.name}}</option>
+          <option value="unicornDad">Sélectionnez le pere</option>
+      </select>
+      <select>
+          <option ng-repeat="unicorn in unicorns">{{unicorn.name}}</option>
+          <<option value="unicornMom">Sélectionnez la mere</option>
+      </select>
+        <button type="button" name="button" ng-click="mateUnicorn(unicornDad,unicornMom)">Accoupler licorne</button>
+
+        <h2> Liste d'enfants</h2>
+
+        <pre>{{unicornChild | json }}</pre>
+
+  </div>
+
+
+
+
+  </body>
